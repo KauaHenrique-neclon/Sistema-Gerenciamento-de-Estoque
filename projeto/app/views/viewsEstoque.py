@@ -51,11 +51,6 @@ def descricaoProduto(request):
 @verificar_login
 def editarProduto(request):
     idproduto = request.POST.get('idprodutoeditar')
-    dadosprodutos = Produto.objects.filter(idproduto=idproduto).first()
-    dados = {'dados': dadosprodutos}
-    return render(request, 'estoque/editar.html', dados)
-
-def editarInfoProduto(request):
     if request.method == 'POST':
         idDoProduto = request.POST.get('dadosIdProduto')
         if idDoProduto:
@@ -76,6 +71,36 @@ def editarInfoProduto(request):
                 return redirect('estoque')
             else:
                 messages.error(request, 'Erro em atualizar os dados')
+        else:
+            messages.error(request, 'erro ao receber o id do produto')
+    dadosprodutos = Produto.objects.filter(idproduto=idproduto).first()
+    dados = {'dados': dadosprodutos}
+    return render(request, 'estoque/editar.html', dados)
+
+def editarInfoProduto(request):
+    idDoProduto = request.POST.get('dadosIdProdutoo')
+    if request.method == 'POST':
+        if idDoProduto:
+            descricaoRecebido = request.POST.get('descricaoi')
+            precoRecebido = request.POST.get('precoi')
+            quantidadeRecebido = request.POST.get('quantidadei')
+            controladoRecebido = request.POST.get('controladoi')
+            if controladoRecebido and descricaoRecebido and precoRecebido and quantidadeRecebido:
+                try:
+                    ## buscando os dados do produto atraves do id
+                    updateProduto = Produto.objects.get(idproduto = idDoProduto)
+                    ## salvando os novos dados
+                    updateProduto.preco = precoRecebido
+                    updateProduto.descricao = descricaoRecebido
+                    updateProduto.quantidade = quantidadeRecebido
+                    updateProduto.controlado = controladoRecebido
+                    updateProduto.save()
+                    messages.success(request, 'Atualizado com sucesso')
+                    return redirect('estoque')
+                except Produto.DoesNotExist as e:
+                    messages.success(request, 'Erro ao atualizar dados: ', e)
+            else:
+                messages.error(request, 'Preencha todos os dadoss')
         else:
             messages.error(request, 'erro ao receber o id do produto')
     else:
