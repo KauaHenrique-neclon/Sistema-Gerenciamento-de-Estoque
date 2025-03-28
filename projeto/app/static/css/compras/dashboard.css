@@ -1,0 +1,72 @@
+body{
+    background-color: #f0eded;
+}
+
+.all {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.all div {
+    margin: 20px;
+    margin-top: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.coluna-1 {
+    min-width: 300px;
+    width: 25%;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.estatistica {
+    margin-bottom: 20px;
+}
+
+.header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dados-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.dados-text {
+    font-size: 16px;
+    color: #666;
+}

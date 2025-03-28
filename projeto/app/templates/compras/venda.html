@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/compras/venda.css' %}">
+    <title>Registrar Saída de Mercadorias</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrar Saída de Mercadorias</h1>
+        <form action="{% url 'venda' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if produtos %}
+            <label for="idproduto">Produto:</label>
+            <select id="idproduto" name="idproduto" required>
+                <option value="" disabled selected>Selecione um produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto.idproduto }}" name="id_produto">{{ produto.nome }}</option>
+                {% endfor %}
+            </select>            
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" required>
+
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" step="0.01" required>
+
+            <button type="submit">Registrar Saída</button>
+            {% endif %}
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

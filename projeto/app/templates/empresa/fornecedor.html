@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/empresa/fornecedor.css" %}">
+        <script src="{% static "js/empresa/fornecedor.js" %}" defer></script>
+        <title>Fornecedor</title>
+    </head>
+    <body>
+        <div class="selecionar">
+            <button class="buttonCadastar" id="buttonCadastar" name="buttonCadastar">Cadastrar Fornecedor</button>
+            <button class="buttonEntregas" id="buttonEntregas" name="buttonEntregas">Cadastrar Entregas</button>
+            <a href="{% url 'home' %}"><button>Menu</button></a>
+        </div>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="cadastro" id="cadastro" name="cadastro">
+            <h1>Cadastro de Fornecedor</h1>
+            <form method="POST" action="{% url 'adicionarFornecedor' %}">
+                {% csrf_token %}
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" id="cnpj" name="cnpj" required maxlength="16">
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required maxlength="30">
+
+                <label for="nomefornece">Nome da Empresa:</label>
+                <input type="text" id="nomefornece" name="nomefornece" required maxlength="255">
+
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" maxlength="255">
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required maxlength="255">
+
+                <label for="numero">Número:</label>
+                <input type="number" id="numero" name="numero" required>
+  
+                <button type="submit">Cadastrar Fornecedor</button>
+                <a href="{% url 'home' %}"><button>Voltar Menu</button></a>
+            </form>
+        </div>
+        <div class="recebimento" id="recebimento" name="recebimento" style="display: none;">
+            <h1>Recebimento de Mercadoria</h1>
+            <form method="POST" action="{% url 'Entregas' %}">
+                {% csrf_token %}
+                <label for="cnpjLabel">CNPJ:</label>
+                <input type="text" id="cnpj" name="cnpj" required>
+
+                <label for="totalproduto">Total de Produtos:</label>
+                <input type="number" id="totalproduto" name="totalproduto" required>
+
+                <label for="notaFiscal">Nota Fiscal:</label>
+                <input type="number" id="notaFiscal" name="notaFiscal" required>
+
+                <label for="idproduto">Produto:</label>
+                <select id="idproduto" name="idproduto" required>
+                    <option value="" disabled selected>Selecione um produto</option>
+                    {% for produto in produtos %}
+                        <option value="{{ produto.idproduto }}" name="id_produto">{{ produto.nome }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Registrar Recebimento</button>
+                <a href="{% url 'home' %}"><button>Voltar Menu</button></a>
+            </form>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </body>
+</html>

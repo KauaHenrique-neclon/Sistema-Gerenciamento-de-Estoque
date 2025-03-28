@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/financas/descricaoFatura.css' %}">
+    </head>
+    <body>
+    {% if dadosFatura %}
+      <div class="container">
+        <h1>Detalhes da Faturaa</h1>
+        <div class="detalheFatura">
+            <label>ID da Fatura:</label>
+            <p>{{ dadosFatura.id }}</p>
+        </div>
+        <div class="detalheFatura">
+            <label>Data: </label>
+            <p>{{ dadosFatura.data }}</p>
+        </div>
+        <div class="detalheFatura">
+            <label>Codigo de Barra:</label>
+            <p>R${{ dadosFatura.codigoDeBarra }}</p>
+        </div>
+        <div class="detalheFatura">
+            <label>Valor:</label>
+            <p>{{ dadosFatura.valor }}</p>
+        </div>
+        <div class="detalheFatura">
+            <label>Status:</label>
+            <p>{{ dadosFatura.status }}</p>
+        </div>
+        <a href="{% url 'verFatura' %}"class="back-button">Voltar</a>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/compras/devolucao.css' %}">
+        <title>Página de Devolução</title>
+    </head>
+    <body>
+        <h1>Página de Devolução</h1>
+        <form method="POST" action="{% url 'devolucao' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="item">Item a ser devolvido:</label>
+            <select id="item" name="item" required>
+                <option value="" disabled selected>Selecione um item</option>
+                {% if produtos %}
+                {% for produto in produtos %}
+                    <option value="{{ produto.idproduto }}" id="id_produto" name="id_produto">{{ produto.nome }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" required>
+        </div>
+        <div class="form-group">
+            <label for="item">Motivo da devolução</label>
+            <select name="motivo" id="motivo">
+                <option value="danificado">Danificado</option>
+                <option value="decisao">decisão</option>
+                <option value="naoGostou">Não Gostou</option>
+            </select>
+        </div>
+        <button type="submit">Devolver</button>
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </body>
+</html>

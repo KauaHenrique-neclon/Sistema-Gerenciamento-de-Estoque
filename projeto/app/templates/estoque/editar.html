@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="{% static 'css/estoque/editar.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Produto</h1>
+        <form action="{% url 'editarInfoProduto' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="number" step="0.01" id="precoi" name="precoi" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricaoi" name="descricaoi" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidadei" name="quantidadei" required>
+            </div>
+            <div class="form-group">
+                <label for="controlado">Controlado:</label>
+                <input type="text" id="controladoi" name="controladoi" required>
+            </div>
+            {% if dados %}
+            <button type="submit" id="dadosIdProduto" value="{{ dados.idproduto }}" class="submit-button">Salvar Alterações</button>
+            {% endif %}
+        </form>
+        <a href="{% url 'estoque' %}" class="back-button">Voltar</a>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

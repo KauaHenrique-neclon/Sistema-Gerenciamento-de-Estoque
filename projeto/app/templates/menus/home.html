@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE hmtl>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Menu Principal</title>
+        <link rel="stylesheet" href="{% static 'css/menus/menu.css' %}">
+    </head>
+    <body>
+        <div class="titulo">
+            <h1>Menu Sistema de Estoque</h1>
+            {% if hora %}
+            <h1>Hora: {{ hora }}</h1>
+            {% else %}
+            <p>Hora indisponível</p>
+            {% endif %}
+        </div>
+        <div class="all">
+            <div class="frames">
+                <h1>Estoque</h1>
+                <img src="{% static 'icones/estoque.png' %}" alt="">
+                <a href="{% url 'estoque' %}"><button>Acessar</button></a>
+            </div>
+            <div class="frames">
+                <h1>Financeira</h1>
+                <img src="{% static 'icones/banco.ico' %}" alt="">
+                <a href="{% url 'menuFinancas' %}"><button>Acessar</button></a>
+            </div>
+            <div class="frames">
+                <h1>Empresa</h1>
+                <img src="{% static 'icones/cliente.ico' %}" alt="">
+                <a href="{% url 'MenuEmpresa' %}"><button>Acessar</button></a>
+            </div>
+            <div class="frames">
+                <h1>Compras</h1>
+                <img src="{% static 'icones/compras.ico' %}" alt="">
+                <a href="{% url 'menuVendas' %}"><button>Acessar</button></a>
+            </div>
+            <div class="frames">
+                <h1>Dashboard</h1>
+                <img src="{% static 'icones/dashboard.png' %}" alt="">
+                <a href="{% url 'dashboard' %}"><button>Acessar</button></a>
+            </div>
+            <div class="frames">
+                <h1>Adicionar usuario</h1>
+                <img src="{% static 'icones/iconeAdm.ico' %}" alt="">
+                <a href="{% url 'usuario' %}"><button>Acessar</button></a>
+            </div>
+        </div>
+    </body>
+</html>

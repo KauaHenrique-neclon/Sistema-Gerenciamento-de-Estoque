@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/financas/verFaturaVer.css' %}">
+    </head>
+    <body>
+        <div class="titulo">
+            <h1>Ver Faturas</h1>
+        </div>
+        <form method="GET" action="{% url 'verFatura' %}">
+            <label for="status" id="escolha">Escolha o Status:</label>
+            <select name="status" id="status">
+                <option value="pedente">Pedente</option>
+                <option value="paga">Paga</option>
+                <option value="acordo">Acordo</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo de Barra</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            {% if totalFatura %}
+            {% for fatur in totalFatura %}
+            <tbody>
+                <tr>
+                    <td>{{ fatur.codigoDeBarra }}</td>
+                    <td>{{ fatur.status }}</td>
+                    <form action="{% url 'descricaoFatura' %}" method="POST">
+                        <td><button name="PegarCodigoDeBarra" id="PegarCodigoDeBarra" value="{{ fatur.codigoDeBarra }}">Ver descrição</button></td>
+                    </form>
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% else %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </table>
+    </body>
+</html>

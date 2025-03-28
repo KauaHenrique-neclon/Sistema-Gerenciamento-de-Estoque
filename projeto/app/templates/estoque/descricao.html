@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="{% static 'css/estoque/descricao.css' %}">
+</head>
+<body>
+    {% if descricao %}
+    
+    <div class="container">
+        <h1>Detalhes do Produto</h1>
+        <div class="product-detail">
+            <label>ID do Produto:</label>
+            <p>{{ descricao.idproduto }}</p>
+        </div>
+        <div class="product-detail">
+            <label>Nome:</label>
+            <p>{{ descricao.nome }}</p>
+        </div>
+        <div class="product-detail">
+            <label>Preço:</label>
+            <p>R${{ descricao.preco }}</p>
+        </div>
+        <div class="product-detail">
+            <label>Descrição:</label>
+            <p>{{ descricao.descricao }}</p>
+        </div>
+        <div class="product-detail">
+            <label>Quantidade:</label>
+            <p>{{ descricao.quantidade }}</p>
+        </div>
+        <div class="product-detail">
+            <label>Controlado:</label>
+            <p>{{ descricao.controlado }}</p>
+        </div>
+        <a href="{% url 'estoque' %}"class="back-button">Voltar</a>
+    </div>
+    {% else %}
+    <p>Nenhum produto encontrado.</p>
+    {% endif %}
+</body>
+</html>

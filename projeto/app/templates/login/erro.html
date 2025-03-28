@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Acesso Restrito</title>
+    <link rel="stylesheet" href="{% static 'css/login/erro.css' %}">
+</head>
+<body>
+    {% if messages %}
+        <div class="messages">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    <h1>Página de Acesso Restrito</h1>
+    <p>Você tentou acessar uma página que não tem permissão.</p>
+</body>
+</html>

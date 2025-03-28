@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/empresa/adicionarCliente.css' %}">
+        <script src="{% static 'js/empresa/adicionarCliente.js' %}" defer></script>
+        <title>Adicionar Cliente</title>
+    </head>
+    <body>
+        <h1>Adicionar Cliente</h1>
+        <div class="botoes">
+            <button id="buttonAdicionarCPF">Adicionar com CPF</button>
+            <button id="buttonAdicionarCNPJ">Adicionar com CNPJ</button>
+        </div>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="{% url 'AdicionarCliente' %}" method="POST">
+        <div class="adicionarCPF" id="adicionarCPF" name="adicionarCPF">
+            {% csrf_token %}
+            <label for="nome">Nome:</label>
+            <input class="input-field" type="text" id="nome" name="nome" maxlength="255" required>
+
+            <label for="sobrenome">Sobrenome:</label>
+            <input class="input-field" type="text" id="sobrenome" name="sobrenome" maxlength="255">
+
+            <label for="telefone">Telefone:</label>
+            <input class="input-field" type="number" id="telefone" name="telefone" required>
+
+            <label for="cpf">CPF:</label>
+            <input class="input-field" type="text" id="cpf" name="cpf" maxlength="11" required>
+
+            <label for="email">E-mail:</label>
+            <input class="input-field" type="email" id="email" name="email" maxlength="255">
+
+            <label for="bairro">Bairro:</label>
+            <input class="input-field" type="text" id="bairro" name="bairro" required>
+
+            <label for="rua">Rua:</label>
+            <input class="input-field" type="text" id="rua" name="rua" required>
+
+            <label for="numero">Número:</label>
+            <input class="input-field" type="number" id="numero" name="numero" required>
+
+            <button class="submit-button" value="adicionarComCpf" type="submit">Adicionar</button>
+            <a href="{% url 'MenuEmpresa' %}"><button>Voltar ao Menu</button></a>
+        </div>
+        </form>
+        <form action="{% url 'AdicionarCliente' %}" method="POST">
+        <div class="adicionarCNPJ" id="adicionarCNPJ" name="adicionarCNPJ" style="display: none;">
+                {% csrf_token %}
+                <label for="nome">Nome:</label>
+                <input class="input-field" type="text" id="nome" name="nome" maxlength="255" required>
+    
+                <label for="sobrenome">Sobrenome:</label>
+                <input class="input-field" type="text" id="sobrenome" name="sobrenome" maxlength="255">
+    
+                <label for="telefone">Telefone:</label>
+                <input class="input-field" type="number" id="telefone" name="telefone" required>
+    
+                <label for="cnpj">CNPJ: </label>
+                <input class="input-field" type="text" id="cnpj" name="cnpj" maxlength="18">
+    
+                <label for="email">E-mail:</label>
+                <input class="input-field" type="email" id="email" name="email" maxlength="255">
+    
+                <label for="bairro">Bairro:</label>
+                <input class="input-field" type="text" id="bairro" name="bairro" required>
+    
+                <label for="rua">Rua:</label>
+                <input class="input-field" type="text" id="rua" name="rua" required>
+    
+                <label for="numero">Número:</label>
+                <input class="input-field" type="number" id="numero" name="numero" required>
+    
+                <button class="submit-button" value="adicionarComCnpj" type="submit">Adicionar</button>
+                <a href="{% url 'home' %}"><button>Voltar ao Menu</button></a>
+        </div>
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </body>
+</html>

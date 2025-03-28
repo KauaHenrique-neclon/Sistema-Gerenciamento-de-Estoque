@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/financas/emitirNotasFiscais.css' %}">
+    </head>
+    <body>
+        <div>
+            <h1>Emitir Notas Fiscais</h1>
+            <button>Voltar Menu</button>
+        </div>
+        <form action="{% url 'emitirNotasFiscais' %}" method="POST">
+            {% csrf_token %}
+            <label for="cnpj_emitente">CNPJ Emitente:</label>
+            <input type="text" id="cnpj_emitente" name="cnpj_emitente" required>
+        
+            <label for="cnpj_destinatario">CNPJ Destinatário:</label>
+            <input type="text" id="cnpj_destinatario" name="cnpj_destinatario" required>
+        
+            <label for="valor">Valor:</label>
+            <input type="number" step="0.01" id="valor" name="valor" required>
+        
+            <button type="submit">Emitir NF-e</button>
+            <a href="{% url 'home' %}"><button>Menu</button></a>
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}        
+    </body>
+</html>

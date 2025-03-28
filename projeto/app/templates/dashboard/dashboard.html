@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard/dashboard.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard de Gerenciamento</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'estoque' %}">Produtos</a></li>
+                    <li><a href="{% url 'adicionarFornecedor' %}">Fornecedores</a></li>,
+                    <li><a href="{% url 'adicionarFornecedor' %}">Clientes</a></li>
+                    <li><a href="{% url 'dashboardVendas' %}">Saídas</a></li>
+                    <li><a href="{% url 'Entregas' %}">Recebimentos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% if dados %}
+            <section class="card">
+                <h2>Total de Produtos</h2>
+                <p class="number">{{ totalProdutos }}</p>
+            </section>
+
+            <section class="card">
+                <h2>Total de Fornecedores</h2>
+                <p class="number">{{ totalFornecedor }}</p>
+            </section>
+
+            <section class="card">
+                <h2>Total de Clientes</h2>
+                <p class="number">{{ totalCliente }}</p>
+            </section>
+
+            <section class="card">
+                <h2>Últimas Vendas</h2>
+                <ul>
+                    {% for venda in ultimasTresVendas %}
+                    <li>Produto: {{ venda.idproduto.nome }} - Quantidade: {{ venda.quantidade }} - Valor: R$ {{ venda.valor }}</li>
+                    {% empty %}
+                    <li>Nenhuma venda registrada.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+           {% endif %}
+        
+        <footer>
+            <p>&copy; 2025 - Teste Kauã . Eu fiz essa bomba.</p>
+        </footer>
+    </div>
+</body>
+</html>

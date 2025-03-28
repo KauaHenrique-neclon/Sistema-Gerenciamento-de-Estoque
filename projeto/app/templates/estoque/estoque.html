@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Estoque</title>
+    <link rel="stylesheet" href="{% static 'css/estoque/estoque.css' %}">
+</head>
+<body>
+    <h1>Sistema de Controle de Estoque</h1>
+    <div class="add-product">
+        <a href="{% url 'home' %}"><button>Menu</button></a>
+        <a href="{% url 'adicionar' %}"><button onclick="alert('Adicionar produto')">Adicionar Produto</button></a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        {% if produtos %}
+        {% for produt in produtos %}
+        <tbody>
+            <tr>
+                <td>{{ produt.nome }}</td>
+                <td>{{ produt.quantidade }}</td>
+                <td>{{ produt.preco }}</td>
+                <td class="botoes">
+                    <form action="{% url 'editar' %}" method="POST">
+                        {% csrf_token %}
+                        <button onclick="alert('Editar Produto')" name="idprodutoeditar" value="{{ produt.idproduto }}">Editar</button>
+                    </form>
+                    <form action="{% url 'descricao' %}" method="POST">
+                        {% csrf_token %}
+                        <button name="idprodutodescricao" value="{{ produt.idproduto }}">Descrição</button>
+                    </form>
+                    <form action="{% url 'removerproduto' %}" method="POST">
+                        {% csrf_token %}
+                        <button onclick="alert('Deseja remover?')" name="idprodutodelete" value="{{ produt.idproduto }}">Desativar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        {% else %}
+        <p>Nenhum produto encontrado.</p>
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/menus/menuNovo.css' %}">
+    <script defer src="{% static 'js/menu/menu.js' %}"></script>
+    <title>Menu Interativo</title>
+</head>
+<body>
+    <nav>
+            <li class="li-Menu">
+                <ul class="ul-Menu">
+                    <!-- menu compras -->
+                    <li class="li-subMenu">
+                        <a href="javascript:void(0);" class="btnCompra">Compras</a>
+                        <ul class="ul-compras">
+                            <a href="{% url 'dashboardVendas' %}"><li>Dashboard</li></a>
+                            <a href="{% url 'devolucao' %}"><li>Devolução</li></a>
+                            <a href="{% url 'venda' %}"><li>Vendas</li></a>
+                        </ul>
+                    </li>
+                    <!-- fim menu compras -->
+
+                    <!-- menu empresa -->
+                    <li class="li-subMenu">
+                        <a href="javascript:void(0);" class="btnEmpresa">Empresa</a>
+                        <ul class="ul-empresa">
+                            <a href="{% url 'AdicionarCliente' %}"><li>Adicionar clientes</li></a>
+                            <a href="{% url 'adicionarFornecedor' %}"><li>Fornecedor</li></a>
+                            <a href="{% url 'HistoricoEntregas' %}"><li>Historico</li></a>
+                        </ul>
+                    </li>
+                    <!-- fim menu empresa -->
+                    <!-- Menu estoque -->
+                    <li class="li-subMenu">
+                        <a href="javascript:void(0);" class="btnEstoque">Estoque</a>
+                        <ul class="ul-estoque">
+                            <a href="{% url 'adicionar' %}"><li>Adicionar Item</li></a>
+                            <a href="{% url 'estoque' %}"><li>Estoque</li></a>
+                        </ul>
+                    </li>
+                    <!-- fim menu estoque -->
+                    <!-- menu Financas -->
+                    <li class="li-subMenu">
+                        <a href="javascript:void(0);" class="btnFinancas">Finanças</a>
+                        <ul class="ul-financas">
+                            <a href="{% url 'inserirFatura' %}"><li>Inserir Fatura</li></a>
+                            <a href="{% url 'pagamentos' %}"><li>Pagamentos</li></a>
+                            <a href="{% url 'verFatura' %}"><li>Ver Fatura</li></a>
+                        </ul>
+                    </li>
+                    <!-- fim menu financass -->
+                    <!-- Menu usuario -->
+                    <li class="li-subMenu">
+                        <a href="javascript:void(0);" class="btnUtilidades">Utilidades</a>
+                        <ul class="ul-utilidades">
+                            <a href="{% url 'usuario' %}"><li>Usuario</li></a>
+                            <a href="{% url 'logout' %}"><li>Logout</li></a>
+                            <a href="{% url 'dashboard' %}"><li>Dashboard</li></a>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+    </nav>
+    <div>
+        <!-- Conteúdo adicional pode ser adicionado aqui -->
+    </div>
+    <!--
+    <footer class="roda">
+        <div class="rodaPe">
+            <h1>Sistema de Gerenciamento de Estoque</h1>
+            <h1>Criado por Kauã Henrique, um Estudante de Ti</h1>
+        </div>
+    </footer>
+    -->
+</body>
+</html>

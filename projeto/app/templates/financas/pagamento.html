@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/financas/pagamento.css' %}">
+    <title>Registrar Pagamentos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrar Pagamentos</h1>
+        <form action="{% url 'pagamentos' %}" method="POST" enctype="multipart/form-data">
+            <select name="forma" id="forma" required>
+                <option value="" disabled selected>Selecione forma de pagamento</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="cartao">Cartão</option>
+                    <option value="Pix">Pix</option>
+            </select>
+            <!--<label for="valor">valor: </label>
+            <input type="number" id="valor" name="valor" required>!-->
+            <select name="codigoBarra" id="codigoBarra" required>
+            {% if 'faturas' %}
+                <option value="" disabled selected>Selecione uma Fatura</option>
+                    {% for fatur in faturas %}
+                    <option value="{{ fatur.codigoDeBarra }}" name="idFatura">Codigo de Barra:  {{ fatur.codigoDeBarra }}</option>
+                    {% endfor %}
+            {% endif %}
+            </select>
+            <button type="submit">Registrar Pagamento</button>
+            <a href="{% url 'home' %}"><button>Menu</button></a>
+        </form>
+    </div>
+</body>
+</html>

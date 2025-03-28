@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/financas/inserirFatura.css' %}">
+    <title>Adicionar Fatura</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Fatura</h1>
+        <form action="{% url 'inserirFatura' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="data">Data: </label>
+            <input type="date" id="data" name="data" required>
+
+            <label for="codigoDeBarra">Codigo de Barra:</label>
+            <input type="number" id="codigoDeBarra" name="codigoDeBarra" autofocus required>
+
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" step="0.01" required>
+            
+            <select name="status" id="status" required>
+                <option value="pedente">Pedente</option>
+                <option value="paga">Paga</option>
+                <option value="acordo">Acordo</option>
+            </select>
+
+            <button type="submit">Adicionar Fatura</button>
+            <a href="{% url 'home' %}"><button>Menu</button></a>
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

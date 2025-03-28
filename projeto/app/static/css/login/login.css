@@ -1,0 +1,103 @@
+body{
+    width: 99%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.all{
+    width: 100%;
+}
+.titulo{
+    width: 100%;
+    height: 10%;
+}
+.titulo h1{
+    width: 70%;
+    margin-left: 15%;
+    color: rgb(14, 138, 14);
+}
+.estrutura{
+    width: 60%;
+    margin-top: 10%;
+    margin-left: 20%;
+}
+.usuario{
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.usuario h1{
+    font-size: 22px;
+    margin-right: 5%;
+}
+.usuario input{
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 35px;
+    margin-left: 3%;
+    margin-top: 1.5%;
+}
+.senha{
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.senha h1{
+    font-size: 22px;
+}
+.senha input{
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 35px;
+    margin-top: 1.5%;
+    margin-left: 7%;
+}
+.submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.submit button{
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 30px;
+    background-color: rgb(16, 186, 216);
+    margin-top: 2%;
+    cursor: pointer;
+}
+.submit button:hover{
+   background-color: rgb(9, 84, 97);;
+}
+.criando{
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.criando h1{
+    margin-top: 5%;
+    font-size: 18px;
+    margin-right: 5%;
+}
+.messages {
+    margin-top: 20px;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px; 
+}
+
+.success {
+    background-color: #d4edda; 
+    color: #155724; 
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb; 
+}

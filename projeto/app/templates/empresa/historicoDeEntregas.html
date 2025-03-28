@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/empresa/historicoDeEntregas.css" %}">
+    <title>Entregas realizadas</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Entregas Realizadas</h1>
+        <form method="GET" action="{% url 'HistoricoEntregas' %}">
+            <label for="mes">Escolha o Mês:</label>
+            <select id="mes" name="mes" required>
+                <option value="">Selecione</option>
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+            <button type="submit">Filtrar</button>
+            <a href="{% url 'home' %}"><button>Menu</button></a>
+        </form> 
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Recebido</th>
+                    <th>Data do Recebimento</th>
+                    <th>Total de Produtos</th>
+                    <th>Nota Fiscal</th>
+                    <th>CNPJ Fornecedor</th>
+                    <th>ID Produto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entrega in entregas %}
+                <tr>
+                    <td>{{ entrega.idrecebeu }}</td>
+                    <td>{{ entrega.datarecebeu }}</td>
+                    <td>{{ entrega.totalproduto }}</td>
+                    <td>{{ entrega.notaFiscal }}</td>
+                    <td>{{ entrega.cnpj }}</td>
+                    <td>{{ entrega.idproduto }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">Nenhuma entrega encontrada para o mês selecionado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
